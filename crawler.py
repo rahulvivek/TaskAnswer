@@ -75,7 +75,10 @@ class Crawler():
 				index = 1
 				for item in self.current_page_items:
 					item_a = item.find_all("a", {"class": "productName"})[0]
-					print "%s %s" % (index, item_a.span["title"])
+					if item_a.span:
+						print "%s %s" % (index, item_a.span.get("title"))
+					else:
+						print "%s %s" % (index, item_a.get("title"))
 					index += 1
 		else:
 			print "%s are not found." % (self.searching_item)
